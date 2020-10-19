@@ -1335,11 +1335,7 @@ woal_cfg80211_connect_scan(moal_private * priv,
 			conn_param->channel->hw_value;
 		scan_req.chan_list[0].radio_type = conn_param->channel->band;
 		if (conn_param->channel->
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 14, 0)
-		    flags & (IEEE80211_CHAN_NO_IR |
-#else
 		    flags & (IEEE80211_CHAN_PASSIVE_SCAN |
-#endif
 			     IEEE80211_CHAN_RADAR))
 			scan_req.chan_list[0].scan_type =
 				MLAN_SCAN_TYPE_PASSIVE;
@@ -1357,11 +1353,7 @@ woal_cfg80211_connect_scan(moal_private * priv,
 					continue;
 				scan_req.chan_list[chan_idx].radio_type = band;
 				if (ch->
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 14, 0)
-				    flags & (IEEE80211_CHAN_NO_IR |
-#else
 				    flags & (IEEE80211_CHAN_PASSIVE_SCAN |
-#endif
 					     IEEE80211_CHAN_RADAR))
 					scan_req.chan_list[chan_idx].scan_type =
 						MLAN_SCAN_TYPE_PASSIVE;
@@ -2215,11 +2207,7 @@ woal_cfg80211_scan(struct wiphy *wiphy, struct net_device *dev,
 		scan_req.chan_list[i].chan_number = chan->hw_value;
 		scan_req.chan_list[i].radio_type = chan->band;
 		if (chan->
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 14, 0)
-		    flags & (IEEE80211_CHAN_NO_IR |
-#else
 		    flags & (IEEE80211_CHAN_PASSIVE_SCAN |
-#endif
 			     IEEE80211_CHAN_RADAR))
 			scan_req.chan_list[i].scan_type =
 				MLAN_SCAN_TYPE_PASSIVE;
@@ -3309,11 +3297,7 @@ woal_cfg80211_sched_scan_start(struct wiphy *wiphy,
 		priv->scan_cfg.chan_list[i].chan_number = chan->hw_value;
 		priv->scan_cfg.chan_list[i].radio_type = chan->band;
 		if (chan->
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 14, 0)
-		    flags & (IEEE80211_CHAN_NO_IR |
-#else
 		    flags & (IEEE80211_CHAN_PASSIVE_SCAN |
-#endif
 			     IEEE80211_CHAN_RADAR))
 			priv->scan_cfg.chan_list[i].scan_type =
 				MLAN_SCAN_TYPE_PASSIVE;

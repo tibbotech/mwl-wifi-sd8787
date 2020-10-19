@@ -1493,13 +1493,7 @@ woal_cfg80211_set_bitrate_mask(struct wiphy *wiphy,
 
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 4, 0)
 	/* Fill MCS rates */
-// by Dv
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 14, 0)
-	rate_cfg->bitmap_rates[2] = mask->control[band].ht_mcs[0];
-#else
 	rate_cfg->bitmap_rates[2] = mask->control[band].mcs[0];
-#endif
-// by Dv /
 #endif
 
 	status = woal_request_ioctl(priv, req, MOAL_IOCTL_WAIT);

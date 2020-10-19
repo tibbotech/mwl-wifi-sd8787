@@ -248,12 +248,8 @@ void woal_tx_timeout(struct net_device *dev);
 struct net_device_stats *woal_get_stats(struct net_device *dev);
 #if LINUX_VERSION_CODE > KERNEL_VERSION(2, 6, 29)
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 13, 0)
-u16 woal_select_queue(struct net_device *dev, struct sk_buff *skb
-		      , void *accel_priv
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 14, 0)
-		      , select_queue_fallback_t fallback
-#endif
-		      );
+u16 woal_select_queue(struct net_device *dev, struct sk_buff *skb,
+		      void *accel_priv);
 #else
 u16 woal_select_queue(struct net_device *dev, struct sk_buff *skb);
 #endif
@@ -2948,11 +2944,6 @@ u16
 woal_select_queue(struct net_device * dev, struct sk_buff * skb
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 13, 0)
 		  , void *accel_priv
-// by Dv
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 14, 0)
-		  , select_queue_fallback_t fallback
-#endif
-// by Dv /
 #endif
 	)
 {
